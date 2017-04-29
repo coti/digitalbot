@@ -29,7 +29,7 @@ def authentication( keys ):
     api = tweepy.API( auth )
     return api
 
-def replyto( tweet, messages ):
+def replyto( api, tweet, messages ):
     #  print tweet.user.screen_name, ": ", "[", tweet.created_at, "]" , tweet.text
     text = "@" + tweet.user.screen_name + " " + randommessage( messages )
     print text
@@ -40,7 +40,7 @@ def replyto( tweet, messages ):
     return tweet.id
     
 def searchAndReply( api, messages, sleeptime ):
-    maxid =  0
+    maxid = 858438159473954816 # 0
     tweets = api.search( q="digital lang:fr" )
 
     while( True ):
@@ -48,7 +48,7 @@ def searchAndReply( api, messages, sleeptime ):
         if len( tweets ) != 0:
             for tweet in tweets:
                 if tweet.lang == "fr":
-                    tid = replyto( tweet, messages )
+                    tid = replyto( api, tweet, messages )
                     maxid = max( tid, maxid )
 
         print "Max id: ", maxid
@@ -63,11 +63,11 @@ def parsearguments( api, messages ):
     if( sys.argv[1] == "-id" ):
         tweet = api.statuses_lookup( [ int( sys.argv[2] ) ] )
         print tweet[0].text
-        replyto( tweet[0], messages )
+        replyto( api, tweet[0], messages )
     return
 
 def main():
-    SLEEPTIME = 900 # 15 minutes
+    SLEEPTIME = 5 #900 # 15 minutes
     MESSAGELIST = [ "Numérique bordel !",
                     "Avé les doigts ?",
                     "Numérique rique rique...",
