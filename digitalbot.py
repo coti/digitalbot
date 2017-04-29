@@ -26,7 +26,7 @@ def authentication( keys ):
 
 def searchAndReply( api, messages, sleeptime ):
     tweets = api.search( q="digital lang:fr" )
-
+    
     if len( tweets ) != 0:
         for tweet in tweets:
             if (datetime.datetime.now() - tweet.created_at).seconds < sleeptime:
@@ -46,7 +46,9 @@ def main():
     SLEEPTIME = 900 # 15 minutes
     MESSAGELIST = [ "Numérique bordel !",
                     "Avé les doigts ?",
-                    "Numérique rique rique..." ]
+                    "Numérique rique rique...",
+                    "Comme dans \"orgasme digital\" ?",
+                    "Numérique ta mère !"]
 
     api = authentication( keys )
     searchAndReply( api, MESSAGELIST, SLEEPTIME )
