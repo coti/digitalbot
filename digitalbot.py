@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import tweepy
-import datetime, random, time
+import random, time
 from keys import keys
 
 import sys
@@ -25,22 +25,26 @@ def authentication( keys ):
     return api
 
 def searchAndReply( api, messages, sleeptime ):
+    maxid =  0
     tweets = api.search( q="digital lang:fr" )
- 
-    if len( tweets ) != 0:
-        for tweet in tweets:
-            if (datetime.datetime.now() - tweet.created_at).seconds < sleeptime:
+
+    while( True ):
+    
+        if len( tweets ) != 0:
+            for tweet in tweets:
+                maxid = max( tweet.id, maxid )
                 if tweet.lang == "fr":
-                    #            print tweet.user.screen_name, ": ", "[", tweet.created_at, "]" , tweet.text
+                    #  print tweet.user.screen_name, ": ", "[", tweet.created_at, "]" , tweet.text
                     text = "@" + tweet.user.screen_name + " " + randommessage( messages )
                     print text
                     try:
-                        s = api.update_status( text, tweet.id )
+                        s = api.update_status( text, in_reply_to_status_id = tweet.id )
                     except tweepy.error.TweepError:
                         pass
-    time.sleep( sleeptime )
-
-                    
+        print "Max id: ", maxid
+        tweets = api.search( q="digital lang:fr since_id=" + str( maxid ) )
+        time.sleep( sleeptime )
+    return # should never happen
 
 def main():
     SLEEPTIME = 900 # 15 minutes
