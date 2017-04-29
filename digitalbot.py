@@ -26,7 +26,7 @@ def authentication( keys ):
 
 def searchAndReply( api, messages, sleeptime ):
     tweets = api.search( q="digital lang:fr" )
-    
+ 
     if len( tweets ) != 0:
         for tweet in tweets:
             if (datetime.datetime.now() - tweet.created_at).seconds < sleeptime:
@@ -48,7 +48,10 @@ def main():
                     "Avé les doigts ?",
                     "Numérique rique rique...",
                     "Comme dans \"orgasme digital\" ?",
-                    "Numérique ta mère !"]
+                    "Je préfère Numérique Hunter à Digital Capone",
+                    "Numérique ta mère !",
+                    "D'après l'Académie Française, tu parles de doigts. http://www.academie-francaise.fr/digital",
+                    "Il n'ya que deux métiers dans le digital : proctologue et pianiste"]
 
     api = authentication( keys )
     searchAndReply( api, MESSAGELIST, SLEEPTIME )
