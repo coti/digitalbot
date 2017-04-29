@@ -34,7 +34,10 @@ def searchAndReply( api, messages, sleeptime ):
                     #            print tweet.user.screen_name, ": ", "[", tweet.created_at, "]" , tweet.text
                     text = "@" + tweet.user.screen_name + " " + randommessage( messages )
                     print text
-                    s = api.update_status( text, tweet.id )
+                    try:
+                        s = api.update_status( text, tweet.id )
+                    except tweepy.error.TweepError:
+                        pass
     time.sleep( sleeptime )
 
                     
