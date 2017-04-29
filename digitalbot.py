@@ -43,7 +43,7 @@ def searchAndReply( api, messages, sleeptime ):
                     
 
 def main():
-    SLEEPTIME = 36000 #900 # 15 minutes
+    SLEEPTIME = 900 # 15 minutes
     MESSAGELIST = [ "Numérique bordel !",
                     "Avé les doigts ?",
                     "Numérique rique rique..." ]
