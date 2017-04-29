@@ -9,6 +9,11 @@ import sys
 reload( sys )
 sys.setdefaultencoding( 'utf-8' )
 
+def printhelp():
+    print sys.argv[0], " : utilisation"
+    print "\t sans argument : chercher les tweets et répondre à tous"
+    print "\t -id <TWEET ID> : répondre à un tweet en particulier"
+    return    
 
 def randommessage( messages ):
     return random.choice( messages )
@@ -24,6 +29,16 @@ def authentication( keys ):
     api = tweepy.API( auth )
     return api
 
+def replyto( tweet, messages ):
+    #  print tweet.user.screen_name, ": ", "[", tweet.created_at, "]" , tweet.text
+    text = "@" + tweet.user.screen_name + " " + randommessage( messages )
+    print text
+    try:
+        s = api.update_status( text, in_reply_to_status_id = tweet.id )
+    except tweepy.error.TweepError:
+        pass
+    return tweet.id
+    
 def searchAndReply( api, messages, sleeptime ):
     maxid =  0
     tweets = api.search( q="digital lang:fr" )
@@ -32,19 +47,24 @@ def searchAndReply( api, messages, sleeptime ):
     
         if len( tweets ) != 0:
             for tweet in tweets:
-                maxid = max( tweet.id, maxid )
                 if tweet.lang == "fr":
-                    #  print tweet.user.screen_name, ": ", "[", tweet.created_at, "]" , tweet.text
-                    text = "@" + tweet.user.screen_name + " " + randommessage( messages )
-                    print text
-                    try:
-                        s = api.update_status( text, in_reply_to_status_id = tweet.id )
-                    except tweepy.error.TweepError:
-                        pass
+                    tid = replyto( tweet, messages )
+                    maxid = max( tid, maxid )
+
         print "Max id: ", maxid
-        tweets = api.search( q="digital lang:fr since_id=" + str( maxid ) )
         time.sleep( sleeptime )
+        tweets = api.search( q="digital lang:fr since_id=" + str( maxid ) )
+
     return # should never happen
+
+def parsearguments( api, messages ):
+    if( sys.argv[1] in [ "h", "-h", "--help" ]  ):
+        printhelp()
+    if( sys.argv[1] == "-id" ):
+        tweet = api.statuses_lookup( [ int( sys.argv[2] ) ] )
+        print tweet[0].text
+        replyto( tweet[0], messages )
+    return
 
 def main():
     SLEEPTIME = 900 # 15 minutes
@@ -58,7 +78,10 @@ def main():
                     "Il n'ya que deux métiers dans le digital : proctologue et pianiste"]
 
     api = authentication( keys )
-    searchAndReply( api, MESSAGELIST, SLEEPTIME )
+    if( 1 == len( sys.argv ) ):
+        searchAndReply( api, MESSAGELIST, SLEEPTIME )
+    else:
+        parsearguments( api, MESSAGELIST )
     
 if "__main__" == __name__:
     main()
