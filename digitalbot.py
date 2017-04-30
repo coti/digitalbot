@@ -4,6 +4,7 @@
 import tweepy
 import random, time
 from keys import keys
+from data import MESSAGELIST, IGNORED
 
 import sys
 reload( sys )
@@ -53,7 +54,7 @@ def searchAndReply( api, messages, sleeptime=60, maxid=0 ):
     
         if len( tweets ) != 0:
             for tweet in tweets:
-                if tweet.lang == "fr" and not tweet.user.screen_name == "liberezledoigt":
+                if tweet.lang == "fr" and tweet.user.screen_name not in IGNORED:
                     tid = replyto( api, tweet, messages )
                     maxid = max( tid, maxid )
 
@@ -77,14 +78,6 @@ def parsearguments( api, messages ):
 
 def main():
     SLEEPTIME = 60 
-    MESSAGELIST = [ "Numérique bordel !",
-                    "Avé les doigts ?",
-                    "Numérique rique rique...",
-                    "Comme dans \"orgasme digital\" ?",
-                    "Je préfère Numérique Hunter à Digital Capone",
-                    "Numérique ta mère !",
-                    "D'après l'Académie Française, tu parles de doigts. http://www.academie-francaise.fr/digital",
-                    "Il n'ya que deux métiers dans le digital : proctologue et pianiste"]
 
     api = authentication( keys )
     if( 1 == len( sys.argv ) ):
