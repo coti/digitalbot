@@ -10,7 +10,8 @@ MESSAGELIST = ( "Numérique bordel !",
                 "Il n'ya que deux métiers dans le digital : proctologue et pianiste",
                 "Vous parlez d'orteils ?",
                 "Digital ? Vous voulez un whisky ?",
-                "Pas dans le nez, les doigts. Ce n'est pas propre.\nSinon on dit \"numérique\"."
+                "Pas dans le nez, les doigts. Ce n'est pas propre.\nSinon on dit \"numérique\".",
+                "Digital: du latin \"digitalis\" qui signifie \"de la grosseur du doigt\" --> numerique !",
 )
 
 MESSAGELIST2 = ( "La digitale, c'est une plante",
@@ -19,4 +20,6 @@ MESSAGELIST2 = ( "La digitale, c'est une plante",
 IGNORED = ( "liberezledoigt",
             "971knaradio",
             "DigiToSell",
+            "AurelieMorinea",
+            "lyonelkaufmann",
         )

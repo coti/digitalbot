@@ -21,7 +21,9 @@ Pour le moment, ça répond :
 * "Il n'ya que deux métiers dans le digital : proctologue et pianiste"
 * "Vous parlez d'orteils ?"
 * "Digital ? Vous voulez un whisky ?"
-
+* "Pas dans le nez, les doigts. Ce n'est pas propre. Sinon on dit "numérique"."
+* Digital: du latin "digitalis" qui signifie "de la grosseur du doigt" --> numerique !"
+ 
 Les suggestions sont les bienvenues !
 
 ## L'usage officiel 
