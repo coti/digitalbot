@@ -22,4 +22,5 @@ IGNORED = ( "liberezledoigt",
             "DigiToSell",
             "AurelieMorinea",
             "lyonelkaufmann",
+            "LUsineDigitale"
         )
