@@ -81,7 +81,7 @@ def parsearguments( api ):
             return
         tweet = api.statuses_lookup( [ int( sys.argv[2] ) ] )
         print tweet[0].text
-        replyto( api, tweet[0] )
+        replyto( api, tweet[0], MESSAGELIST )
     if( sys.argv[1] in ["s", "-s", "--since" ] ):
         maxid = int( sys.argv[2] )
         searchAndReply( api, maxid = maxid )        
