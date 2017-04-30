@@ -12,6 +12,7 @@ MESSAGELIST = ( "Numérique bordel !",
                 "Digital ? Vous voulez un whisky ?",
                 "Pas dans le nez, les doigts. Ce n'est pas propre.\nSinon on dit \"numérique\".",
                 "Digital: du latin \"digitalis\" qui signifie \"de la grosseur du doigt\" --> numerique !",
+                "Dis Gital, ça veut dire quoi \"numérique\" ?",
 )
 
 MESSAGELIST2 = ( "La digitale, c'est une plante",
