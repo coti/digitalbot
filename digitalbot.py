@@ -13,6 +13,7 @@ def printhelp():
     print sys.argv[0], " : utilisation"
     print "\t sans argument : chercher les tweets et répondre à tous"
     print "\t -id <TWEET ID> : répondre à un tweet en particulier"
+    print "\t -sd/--since/s <TWEET ID> : lancer la boucle à partir d'un tweet en particulier"
     return    
 
 def randommessage( messages ):
@@ -39,8 +40,7 @@ def replyto( api, tweet, messages ):
         pass
     return tweet.id
     
-def searchAndReply( api, messages, sleeptime ):
-    maxid = 858470724201193472 # 0
+def searchAndReply( api, messages, sleeptime=60, maxid=0 ):
     tweets = api.search( q="digital lang:fr" )
 
     while( True ):
@@ -64,6 +64,9 @@ def parsearguments( api, messages ):
         tweet = api.statuses_lookup( [ int( sys.argv[2] ) ] )
         print tweet[0].text
         replyto( api, tweet[0], messages )
+    if( sys.argv[1] in ["s", "-s", "--since" ] ):
+        maxid = int( sys.argv[2] )
+        searchAndReply( api, messages, maxid = maxid )        
     return
 
 def main():
