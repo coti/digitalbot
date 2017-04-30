@@ -84,7 +84,8 @@ def main():
                     "Je préfère Numérique Hunter à Digital Capone",
                     "Numérique ta mère !",
                     "D'après l'Académie Française, tu parles de doigts. http://www.academie-francaise.fr/digital",
-                    "Il n'ya que deux métiers dans le digital : proctologue et pianiste"]
+                    "Il n'ya que deux métiers dans le digital : proctologue et pianiste",
+                    "Les orteils sont-ils des doigts ?"]
 
     api = authentication( keys )
     if( 1 == len( sys.argv ) ):
