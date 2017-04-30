@@ -13,7 +13,7 @@ sys.setdefaultencoding( 'utf-8' )
 def printhelp():
     print sys.argv[0], " : utilisation"
     print "\t sans argument : chercher les tweets et répondre à tous"
-    print "\t -id <TWEET ID> : répondre à un tweet en particulier"
+    print "\t -id/--id/id <TWEET ID> : répondre à un tweet en particulier"
     print "\t -sd/--since/s <TWEET ID> : lancer la boucle à partir d'un tweet en particulier"
     return    
 
@@ -75,7 +75,7 @@ def searchAndReply( api, sleeptime=60, maxid=0 ):
 def parsearguments( api ):
     if( sys.argv[1] in [ "h", "-h", "--help" ]  ):
         printhelp()
-    if( sys.argv[1] == "-id" ):
+    if( sys.argv[1] in [ "-id", "--id", "id" ] ):
         tweet = api.statuses_lookup( [ int( sys.argv[2] ) ] )
         print tweet[0].text
         replyto( api, tweet[0] )
