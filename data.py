@@ -7,7 +7,7 @@ MESSAGELIST = ( "Numérique bordel !",
                 "Je préfère Numérique Hunter à Digital Capone",
                 "Numérique ta mère !",
                 "D'après l'Académie Française, tu parles de doigts. http://www.academie-francaise.fr/digital",
-                "Il n'ya que deux métiers dans le digital : proctologue et pianiste",
+                "Il n'y a que deux métiers dans le digital : proctologue et pianiste",
                 "Vous parlez d'orteils ?",
                 "Digital ? Vous voulez un whisky ?",
 )
