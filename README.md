@@ -13,6 +13,7 @@ Pour le moment, ça répond :
 * "Numérique ta mère !"
 * "D'après l'Académie Française, tu parles de doigts. http://www.academie-francaise.fr/digital"
 * "Il n'ya que deux métiers dans le digital : proctologue et pianiste"
+
 Les suggestions sont les bienvenues !
 
 ## L'usage officiel 
