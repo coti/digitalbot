@@ -75,7 +75,7 @@ def searchAndReply( api, sleeptime=60, maxid=0 ):
                     
         print "Max id: ", maxid
         time.sleep( sleeptime )
-        tweets = api.search( q="digital lang:fr since_id:" + str( maxid ) )
+        tweets = api.search( q="digital lang:fr since_id:" + str( maxid+1 ) )
 
     return # should never happen
 
