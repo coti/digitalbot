@@ -8,8 +8,13 @@ MESSAGELIST = ( "Numérique bordel !",
                 "Numérique ta mère !",
                 "D'après l'Académie Française, tu parles de doigts. http://www.academie-francaise.fr/digital",
                 "Il n'ya que deux métiers dans le digital : proctologue et pianiste",
+                "Vous parlez d'orteils ?",
+                "Digital ? Vous voulez un whisky ?",
 )
 
+MESSAGELIST2 = ( "La digitale, c'est une plante",
+                 )
+
 IGNORED = ( "liberezledoigt",
-            "@971knaradio",
+            "971knaradio",
         )
