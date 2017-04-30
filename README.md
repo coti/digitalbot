@@ -2,6 +2,8 @@
 
 Robot qui cherche les tweets en français qui parlent de digital.
 
+Le profil Twitter du bousin : https://twitter.com/liberezledoigt
+
 ## Réponses 
 
 Pour le moment, ça répond :
