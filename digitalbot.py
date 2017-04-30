@@ -40,14 +40,14 @@ def replyto( api, tweet, messages ):
     return tweet.id
     
 def searchAndReply( api, messages, sleeptime ):
-    maxid = 858438159473954816 # 0
+    maxid = 858470724201193472 # 0
     tweets = api.search( q="digital lang:fr" )
 
     while( True ):
     
         if len( tweets ) != 0:
             for tweet in tweets:
-                if tweet.lang == "fr":
+                if tweet.lang == "fr" and not tweet.user.screen_name == "liberezledoigt":
                     tid = replyto( api, tweet, messages )
                     maxid = max( tid, maxid )
 
@@ -67,7 +67,7 @@ def parsearguments( api, messages ):
     return
 
 def main():
-    SLEEPTIME = 5 #900 # 15 minutes
+    SLEEPTIME = 60 
     MESSAGELIST = [ "Numérique bordel !",
                     "Avé les doigts ?",
                     "Numérique rique rique...",
