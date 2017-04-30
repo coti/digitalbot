@@ -4,7 +4,7 @@
 import tweepy
 import random, time
 from keys import keys
-from data import MESSAGELIST, IGNORED
+from data import MESSAGELIST, MESSAGELIST2, IGNORED
 
 import sys
 reload( sys )
@@ -47,33 +47,41 @@ def replyto( api, tweet, messages ):
         pass
     return tweet.id
     
-def searchAndReply( api, messages, sleeptime=60, maxid=0 ):
+def searchAndReply( api, sleeptime=60, maxid=0 ):
     tweets = api.search( q="digital lang:fr" )
+    tweets2 = api.search( q="digitale lang:fr" )
 
     while( True ):
     
         if len( tweets ) != 0:
             for tweet in tweets:
                 if tweet.lang == "fr" and tweet.user.screen_name not in IGNORED:
-                    tid = replyto( api, tweet, messages )
+                    tid = replyto( api, tweet, MESSAGELIST )
                     maxid = max( tid, maxid )
 
+        if len( tweets2 ) != 0:
+            for tweet in tweets2:
+                if tweet.lang == "fr" and tweet.user.screen_name not in IGNORED:
+                    tid = replyto( api, tweet, MESSAGELIST + MESSAGELIST2 )
+                    maxid = max( tid, maxid )
+
+                    
         print "Max id: ", maxid
         time.sleep( sleeptime )
         tweets = api.search( q="digital lang:fr since_id:" + str( maxid ) )
 
     return # should never happen
 
-def parsearguments( api, messages ):
+def parsearguments( api ):
     if( sys.argv[1] in [ "h", "-h", "--help" ]  ):
         printhelp()
     if( sys.argv[1] == "-id" ):
         tweet = api.statuses_lookup( [ int( sys.argv[2] ) ] )
         print tweet[0].text
-        replyto( api, tweet[0], messages )
+        replyto( api, tweet[0] )
     if( sys.argv[1] in ["s", "-s", "--since" ] ):
         maxid = int( sys.argv[2] )
-        searchAndReply( api, messages, maxid = maxid )        
+        searchAndReply( api, maxid = maxid )        
     return
 
 def main():
@@ -81,9 +89,9 @@ def main():
 
     api = authentication( keys )
     if( 1 == len( sys.argv ) ):
-        searchAndReply( api, MESSAGELIST, SLEEPTIME )
+        searchAndReply( api, SLEEPTIME )
     else:
-        parsearguments( api, MESSAGELIST )
+        parsearguments( api )
     
 if "__main__" == __name__:
     main()
