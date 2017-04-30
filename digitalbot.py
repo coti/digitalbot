@@ -32,6 +32,12 @@ def authentication( keys ):
 
 def replyto( api, tweet, messages ):
     #  print tweet.user.screen_name, ": ", "[", tweet.created_at, "]" , tweet.text
+    try: # on ne répond pas aux RT
+        rt = tweet.retweeted_status
+    except AttributeError:
+        pass
+    else:
+        return tweet.id
     text = "@" + tweet.user.screen_name + " " + randommessage( messages )
     print text
     try:
