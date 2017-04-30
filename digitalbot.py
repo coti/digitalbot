@@ -76,6 +76,9 @@ def parsearguments( api ):
     if( sys.argv[1] in [ "h", "-h", "--help" ]  ):
         printhelp()
     if( sys.argv[1] in [ "-id", "--id", "id" ] ):
+        if '2.3' == tweepy.__version__:
+            print "not available with this version of Tweepy"
+            return
         tweet = api.statuses_lookup( [ int( sys.argv[2] ) ] )
         print tweet[0].text
         replyto( api, tweet[0] )

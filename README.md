@@ -4,6 +4,10 @@ Robot qui cherche les tweets en français qui parlent de digital.
 
 Le profil Twitter du bousin : https://twitter.com/liberezledoigt
 
+## Dépendances
+
+Attention, nécessite Tweepy 3.x. Certaines fonctionnalités ne marchent pas avec Tweepy 2.3, par exemple fourni avec Debian Jessie.
+
 ## Réponses 
 
 Pour le moment, ça répond :
