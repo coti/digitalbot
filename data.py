@@ -17,4 +17,5 @@ MESSAGELIST2 = ( "La digitale, c'est une plante",
 
 IGNORED = ( "liberezledoigt",
             "971knaradio",
+            "DigiToSell",
         )
