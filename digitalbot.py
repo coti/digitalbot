@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import tweepy
-import random, time
+import random, time, re
 from keys import keys
 from data import MESSAGELIST, MESSAGELIST2, IGNORED
 
@@ -19,6 +19,13 @@ def printhelp():
 
 def randommessage( messages ):
     return random.choice( messages )
+
+def isinurl( txt ) :
+    urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', txt)
+    for u in urls:
+        if "digita" in u:
+            return True
+    return False
 
 def authentication( keys ):
     CONSUMER_KEY = keys['consumer_key']
@@ -55,13 +62,13 @@ def searchAndReply( api, sleeptime=60, maxid=0 ):
     
         if len( tweets ) != 0:
             for tweet in tweets:
-                if tweet.lang == "fr" and tweet.user.screen_name not in IGNORED:
+                if tweet.lang == "fr" and tweet.user.screen_name not in IGNORED and not isinurl( tweet.text ):
                     tid = replyto( api, tweet, MESSAGELIST )
                     maxid = max( tid, maxid )
 
         if len( tweets2 ) != 0:
             for tweet in tweets2:
-                if tweet.lang == "fr" and tweet.user.screen_name not in IGNORED:
+                if tweet.lang == "fr" and tweet.user.screen_name not in IGNORED and not isinurl( tweet.text ):
                     tid = replyto( api, tweet, MESSAGELIST + MESSAGELIST2 )
                     maxid = max( tid, maxid )
 
