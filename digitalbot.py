@@ -55,7 +55,7 @@ def replyto( api, tweet, messages ):
     return tweet.id
     
 def searchAndReply( api, sleeptime=60, maxid=0 ):
-    tweets = api.search( q="digital lang:fr" ) + api.search( q="digitaux lang:fr" ) 
+    tweets = api.search( q="digital lang:fr" ) + api.search( q="digitaux lang:fr" ) + api.search( q="digitalisation lang:fr" )
     tweets2 = api.search( q="digitale lang:fr" ) + api.search( q="digitales lang:fr" )
 
     while( True ):
